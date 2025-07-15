@@ -1,0 +1,8 @@
+// let index = 1;
+// document.querySelectorAll('.event-card').forEach((element) => {
+//   element.setAttribute('tabindex', '1')
+// });
+
+
+ const myElement = document.getElementById(".event-card");
+  myElement.setAttribute('tabIndex', '2');

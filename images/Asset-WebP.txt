@@ -1,0 +1,12 @@
+cd C:\Shared\Site Development\Assets\animals
+magick mogrify -quality 80 -format webp *.jpg *.png
+cd C:\Shared\Site Development\Assets\events
+magick mogrify -quality 80 -format webp *.jpg *.png
+cd C:\Shared\Site Development\Assets\fieldWork
+magick mogrify -quality 80 -format webp *.jpg *.png
+cd C:\Shared\Site Development\Assets\logos
+magick mogrify -quality 80 -format webp *.jpg *.png
+cd C:\Shared\Site Development\Assets\outreachPrograms
+magick mogrify -quality 80 -format webp *.jpg *.png
+cd C:\Shared\Site Development\Assets\outreachPrograms\presenting
+magick mogrify -quality 80 -format webp *.jpg *.png

@@ -2319,7 +2319,7 @@ input, select, textarea {
 
 		.image.featured {
 			display: block;
-			margin: 0 0 3em 0;
+			margin: 3em 0 3em 0;
 			width: 100%;
 		}
 
@@ -2884,7 +2884,6 @@ input, select, textarea {
 						-ms-flex: 0 1 auto;
 						margin: 0 0 2em 0;
 						padding: 0;
-						text-align: center;
 					}
 
 					.post > header .meta {
@@ -2946,7 +2945,7 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			.post {
-				padding: 1.5em 1.5em 0.1em 1.5em ;
+				padding: 1.5em 1.5em 1em 1.5em ;
 				left: -1.5em;
 				margin: 0 0 2em 0;
 				width: calc(100% + (1.5em * 2));
@@ -3192,6 +3191,7 @@ input, select, textarea {
 			height: inherit;
 			line-height: inherit;
 			text-align: right;
+			display: none;
 		}
 
 			#header .main ul {
@@ -3279,11 +3279,22 @@ input, select, textarea {
 				opacity: 1;
 				padding: 0 0.5em 0 0;
 			}
+		
+		/* @media screen and (max-width: 1680px) {
+			#header .main {
+				display:none;
+			}
+
+
+		} */
 
 		@media screen and (max-width: 980px) {
 
 			#header .links {
 				display: none;
+			}
+			#header .main {
+				display:block;
 			}
 
 		}
@@ -3409,9 +3420,9 @@ input, select, textarea {
 		border-bottom: 0;
 		display: inline-block;
 		margin: 0 0 1em 0;
-		overflow: hidden;
+		/* overflow: hidden; */
 		position: relative;
-		width: 4em;
+		width: 7.5em;
 	}
 
 		#intro .logo:before {
@@ -3419,7 +3430,7 @@ input, select, textarea {
 			background-position: top left;
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
-			content: '';
+			/* content: ''; */
 			display: block;
 			height: 100%;
 			left: 0;
@@ -3430,8 +3441,9 @@ input, select, textarea {
 
 		#intro .logo img {
 			display: block;
-			margin-left: -0.25em;
-			width: 4.5em;
+			margin:auto;
+			/* margin-left: -0.25em; */
+			width: 8.5em;
 		}
 
 	#intro header h2 {

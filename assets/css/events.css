@@ -1,0 +1,261 @@
+.event-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 320px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  /* display: flex; */
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.event-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 200px;
+}
+
+.event-image {
+  width: 100%;
+  justify-content:center;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover .event-image img {
+  transform: scale(1.05);
+}
+
+.event-card .header {
+  border: 0;
+  border-bottom: solid 1px rgba(160, 160, 160, 0.3);
+}
+.event-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.event-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.category-tag {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 0.3em 0.7em;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.event-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #475569;
+  margin: 0 0 1em 0;
+  text-transform: uppercase;
+}
+
+.event-subtitle {
+  font-size: 16px;
+  color: #475569;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 14px;
+}
+
+.detail-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.calendar-icon {
+  background: #475569;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z'/%3E%3C/svg%3E")
+    no-repeat center;
+  mask-size: contain;
+}
+
+.location-icon {
+  background: #475569;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E")
+    no-repeat center;
+  mask-size: contain;
+}
+
+.detail-text {
+  font-weight: 500;
+  color: #475569;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .event-card {
+    max-width: 100%;
+    /* width: 100%; */
+  }
+
+  .event-image {
+    width: 100%;
+  }
+
+  .event-content {
+    padding: 16px;
+  }
+
+  .event-title {
+    font-size: 20px;
+  }
+
+  .event-subtitle {
+    font-size: 14px;
+  }
+
+  .category-tag {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .event-card {
+    border-radius: 6px;
+  }
+
+  .event-image {
+    width: 100%;
+  }
+
+  .event-content {
+    padding: 14px;
+  }
+
+  .event-title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .event-subtitle {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .detail-item {
+    font-size: 13px;
+  }
+
+  .detail-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .event-categories {
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .category-tag {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+
+}
+
+/* Grid layout for multiple cards */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  /* grid-template-columns: auto auto auto auto; */
+  row-gap: 20px;
+  column-gap: 30px;
+  max-width: 800px;
+  /* width: 100%; */
+  /* place-items: center; */
+  /* align-content:center; */
+  justify-items: center;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* gap: 16px; */
+  }
+}
+
+@media (max-width: 480px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    /* gap: 12px; */
+  }
+}
+
+/* Add some visual enhancements */
+.event-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+/* Print styles */
+@media print {
+  .event-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .event-card:hover {
+    transform: none;
+  }
+}
