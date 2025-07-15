@@ -2319,7 +2319,7 @@ input, select, textarea {
 
 		.image.featured {
 			display: block;
-			margin: 0 0 3em 0;
+			margin: 3em 0 3em 0;
 			width: 100%;
 		}
 
@@ -2884,7 +2884,6 @@ input, select, textarea {
 						-ms-flex: 0 1 auto;
 						margin: 0 0 2em 0;
 						padding: 0;
-						text-align: center;
 					}
 
 					.post > header .meta {
@@ -2946,7 +2945,7 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			.post {
-				padding: 1.5em 1.5em 0.1em 1.5em ;
+				padding: 1.5em 1.5em 1em 1.5em ;
 				left: -1.5em;
 				margin: 0 0 2em 0;
 				width: calc(100% + (1.5em * 2));

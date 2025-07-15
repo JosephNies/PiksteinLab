@@ -1,299 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>American Riviera Event Card</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<html>
+  <head>
+    <title>Events</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/events.css" />
 
-        .event-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            max-width: 900px;
-            width: 100%;
-            display: flex;
-            position: relative;
-        }
+    <link rel="icon" href="images\logos\logo-Round-NoText-002.png" sizes="32x32" />
+    <link rel="icon" href="images\logos\logo-Round-NoText-002.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="images\logos\logo-Round-NoText-002.png" />
+  </head>
 
-        .image-section {
-            flex: 0 0 300px;
-            background: linear-gradient(135deg, #4a9eff 0%, #00d4ff 100%);
-            position: relative;
-            overflow: hidden;
-        }
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header-component></header-component>
 
-        .palm-decoration {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
+      <!-- Menu -->
+      <section id="menu">
+        <section>
+          <hamburger-component></hamburger-component>
+        </section>
+      </section>
 
-        .palm-decoration::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        .logo-text {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            line-height: 0.9;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-text .american {
-            display: block;
-            font-size: 28px;
-        }
-
-        .logo-text .riviera {
-            display: block;
-            font-size: 36px;
-            margin-top: -2px;
-        }
-
-        .event-badge {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: white;
-            color: #333;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .content-section {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .event-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.3;
-        }
-
-        .event-details {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: #666;
-        }
-
-        .detail-icon {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .calendar-icon {
-            background: #ff4757;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z'/%3E%3C/svg%3E") no-repeat center;
-            mask-size: contain;
-        }
-
-        .location-icon {
-            background: #ff4757;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") no-repeat center;
-            mask-size: contain;
-        }
-
-        .detail-text {
-            flex: 1;
-        }
-
-        .date-main {
-            font-weight: 600;
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .date-sub {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .location-text {
-            font-weight: 600;
-            color: #333;
-            font-size: 16px;
-        }
-
-        .quick-view {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #666;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .quick-view:hover {
-            color: #333;
-        }
-
-        .eye-icon {
-            width: 18px;
-            height: 18px;
-            background: currentColor;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/%3E%3C/svg%3E") no-repeat center;
-            mask-size: contain;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .event-card {
-                flex-direction: column;
-                max-width: 100%;
-                margin: 0 10px;
-            }
-
-            .image-section {
-                flex: none;
-                height: 200px;
-            }
-
-            .content-section {
-                padding: 30px 20px;
-            }
-
-            .event-title {
-                font-size: 20px;
-                margin-bottom: 24px;
-            }
-
-            .logo-text {
-                font-size: 24px;
-            }
-
-            .logo-text .american {
-                font-size: 22px;
-            }
-
-            .logo-text .riviera {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .content-section {
-                padding: 20px 16px;
-            }
-
-            .event-title {
-                font-size: 18px;
-                line-height: 1.4;
-            }
-
-            .date-main, .location-text {
-                font-size: 15px;
-            }
-
-            .quick-view {
-                top: 16px;
-                right: 16px;
-                font-size: 13px;
-            }
-        }
-    </style>
-</head>
-<body>
-<!-- old site text
-    <p>Below are my upcoming events. We’d love to see you there! Check back for more info as the dates approach. Times are in the local time zone of the event. Events are open to all ages unless otherwise noted.</p> -->
-    
-    
-    <div class="event-card">
-        <div class="image-section">
-            <div class="palm-decoration"></div>
-            <div class="logo-text">
-                <span class="american">AMERICAN</span>
-                <span class="riviera">RIVIERA</span>
+      <!-- Main -->
+      <div id="main">
+        <!-- Post -->
+        <article class="post">
+          <header>
+            <div class="title">
+              <h2>Events</h2>
+              <p>
+                See
+                <a href="prior-events.html"> prior events </a>
+              </p>
             </div>
-            <div class="event-badge">Memorial Day Weekend Celebration</div>
-        </div>
-        
-        <div class="content-section">
-            <h1 class="event-title">American Riviera Memorial Day WET Deck Pool Experience</h1>
-            
-            <div class="event-details">
-                <div class="detail-item">
-                    <div class="detail-icon calendar-icon"></div>
-                    <div class="detail-text">
-                        <div class="date-main">May 23, 2025 – May 25, 2025</div>
-                        <div class="date-sub">Recurring daily until May 25, 2025</div>
-                    </div>
+          </header>
+          <!-- Event grid -->
+          <div class="events-grid">
+            <!-- Event Card -->
+            <div
+              class="event-card"
+              tabindex="0"
+              role="button"
+              aria-label="
+                Snake Week 2025
+                ">
+              <a
+                href="
+                  https://snakeweek.org/webinars/
+                  "
+                target="_blank">
+                <div class="event-image">
+                  <img
+                    src="
+                      images\events\snakeWeek-2025.webp
+                     "
+                    alt="
+                      Snake Week Banner
+                      " />
                 </div>
-                
-                <div class="detail-item">
-                    <div class="detail-icon location-icon"></div>
-                    <div class="detail-text">
-                        <div class="location-text">W Scottsdale</div>
+
+                <div class="event-content">
+                  <div class="header">
+                    <div class="event-categories">
+                      <span class="category-tag">Online</span>
+                      <span class="category-tag">In-Person</span>
                     </div>
+                  </div>
+                  <div class="event-title">Snake Week</div>
+
+                  <div class="event-details">
+                    <div class="detail-item">
+                      <div class="detail-icon calendar-icon"></div>
+                      <span class="detail-text"> Jul 13, 2025 - Jul 19, 2025</span>
+                    </div>
+
+                    <div class="detail-item">
+                      <div class="detail-icon location-icon"></div>
+                      <span class="detail-text">GLOBAL - Online</span>
+                    </div>
+                  </div>
                 </div>
+              </a>
             </div>
-        </div>
-        
-        <div class="quick-view">
-            <div class="eye-icon"></div>
-            <span>Quick View</span>
-        </div>
+
+            <!-- Event Card -->
+            <div
+              class="event-card"
+              tabindex="0"
+              role="button"
+              aria-label="
+                Biology of Pit Vipers 5
+                ">
+              <a
+                href="
+                  https://www.biologyofthepitvipers.com/
+                  "
+                target="_blank">
+                <div class="event-image">
+                  <img
+                    src="
+                      images\events\BiologyOfPitVipersIV-2025.webp
+                      "
+                    alt="
+                      Biology of Pit Vipers 5 Banner
+                      " />
+                </div>
+
+                <div class="event-content">
+                  <div class="header">
+                    <div class="event-categories">
+                      <span class="category-tag"> In-Person </span>
+                    </div>
+                  </div>
+                  <div class="event-title">Biology of Pit Vipers 5</div>
+
+                  <div class="event-details">
+                    <div class="detail-item">
+                      <div class="detail-icon calendar-icon"></div>
+                      <span class="detail-text">Jul 23, 2025 - Jul 26, 2025</span>
+                    </div>
+
+                    <div class="detail-item">
+                      <div class="detail-icon location-icon"></div>
+                      <span class="detail-text">Rodeo, NM</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Event Card -->
+            <div
+              class="event-card"
+              tabindex="0"
+              role="button"
+              aria-label="
+                Tucson Reptile & Amphibian Show & Sale
+                ">
+              <a
+                href="
+                https://tucsonreptileshow.com/
+                "
+                target="_blank">
+                <div class="event-image">
+                  <img
+                    src="
+                      images\events\tucsonReptileExpo-2025.webp
+                      "
+                    alt="
+                      Tucson Reptile & Amphibian Show & Sale Banner
+                      " />
+                </div>
+
+                <div class="event-content">
+                  <div class="header">
+                    <div class="event-categories">
+                      <span class="category-tag">In-Person</span>
+                    </div>
+                  </div>
+                  <div class="event-title">Tucson Reptile Show</div>
+
+                  <div class="event-details">
+                    <div class="detail-item">
+                      <div class="detail-icon calendar-icon"></div>
+                      <span class="detail-text">Oct 4, 2025 - Oct 5, 2025</span>
+                    </div>
+
+                    <div class="detail-item">
+                      <div class="detail-icon location-icon"></div>
+                      <span class="detail-text">Tucson, AZ</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Event grid end -->
+          </div>
+        </article>
+        <!-- Main end -->
+      </div>
+
+      <!-- Sidebar -->
+      <section id="sidebar">
+        <!-- Intro -->
+        <section id="intro">
+          <header>
+            <h2>Pikstein Lab</h2>
+            <p>Laboratory for Conservation Research & Education</p>
+          </header>
+        </section>
+
+        <!-- About -->
+        <section class="blurb">
+          <about-component></about-component>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+          <footer-component></footer-component>
+        </section>
+      </section>
+      <!-- Wrapper end -->
     </div>
-</body>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/headerfooter.js"></script>
+  </body>
 </html>

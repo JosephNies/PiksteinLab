@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .carousel-container {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-slide:nth-child(1) {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        }
+
+        .carousel-slide:nth-child(2) {
+            background: linear-gradient(45deg, #4ecdc4, #7fdbda);
+        }
+
+        .carousel-slide:nth-child(3) {
+            background: linear-gradient(45deg, #45b7d1, #74c7ec);
+        }
+
+        .carousel-slide:nth-child(4) {
+            background: linear-gradient(45deg, #96ceb4, #b8ddc4);
+        }
+
+        .carousel-slide:nth-child(5) {
+            background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+        }
+
+        .slide-content {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide-description {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        /* Navigation Arrows */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #333;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-nav:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        .carousel-nav::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+        }
+
+        .carousel-nav.prev::before {
+            transform: rotate(-135deg);
+            margin-left: 4px;
+        }
+
+        .carousel-nav.next::before {
+            transform: rotate(45deg);
+            margin-right: 4px;
+        }
+
+        /* Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Auto-play controls */
+        .carousel-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .control-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .control-btn.active {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .carousel-container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .carousel-wrapper {
+                height: 400px;
+            }
+
+            .slide-title {
+                font-size: 28px;
+            }
+
+            .slide-description {
+                font-size: 16px;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .carousel-nav.prev {
+                left: 15px;
+            }
+
+            .carousel-nav.next {
+                right: 15px;
+            }
+
+            .carousel-controls {
+                top: 15px;
+                right: 15px;
+            }
+
+            .control-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-wrapper {
+                height: 300px;
+            }
+
+            .slide-content {
+                padding: 20px;
+            }
+
+            .slide-title {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .slide-description {
+                font-size: 14px;
+            }
+
+            .carousel-nav {
+                width: 35px;
+                height: 35px;
+            }
+
+            .carousel-nav.prev {
+                left: 10px;
+            }
+
+            .carousel-nav.next {
+                right: 10px;
+            }
+
+            .carousel-indicators {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .indicator {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        /* Touch gestures indicator */
+        .touch-hint {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            text-align: center;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (min-width: 769px) {
+            .touch-hint {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-title">Beautiful Sunset</div>
+                        <div class="slide-description">Experience the breathtaking colors of nature as the sun sets over the horizon</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-title">Ocean Waves</div>
+                        <div class="slide-description">Feel the rhythm of the ocean with gentle waves and peaceful serenity</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-title">Mountain View</div>
+                        <div class="slide-description">Discover majestic peaks and panoramic views that take your breath away</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-title">Forest Path</div>
+                        <div class="slide-description">Wander through lush greenery and find peace in nature's embrace</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-title">Golden Fields</div>
+                        <div class="slide-description">Walk through endless fields of gold under the warm summer sun</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-nav prev" id="prevBtn"></button>
+            <button class="carousel-nav next" id="nextBtn"></button>
+
+            <div class="carousel-indicators" id="indicators"></div>
+
+            <div class="carousel-controls">
+                <button class="control-btn" id="playPauseBtn">Pause</button>
+            </div>
+
+            <div class="touch-hint">
+                Swipe left or right to navigate
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class Carousel {
+            constructor() {
+                this.track = document.getElementById('carouselTrack');
+                this.slides = Array.from(this.track.children);
+                this.nextBtn = document.getElementById('nextBtn');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.indicatorsContainer = document.getElementById('indicators');
+                this.playPauseBtn = document.getElementById('playPauseBtn');
+                
+                this.currentIndex = 0;
+                this.isAutoPlaying = true;
+                this.autoPlayInterval = null;
+                this.touchStartX = 0;
+                this.touchEndX = 0;
+                
+                this.init();
+            }
+
+            init() {
+                this.createIndicators();
+                this.addEventListeners();
+                this.startAutoPlay();
+                this.updateCarousel();
+            }
+
+            createIndicators() {
+                this.slides.forEach((_, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.classList.add('indicator');
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                    this.indicatorsContainer.appendChild(indicator);
+                });
+                this.indicators = Array.from(this.indicatorsContainer.children);
+            }
+
+            addEventListeners() {
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.playPauseBtn.addEventListener('click', () => this.toggleAutoPlay());
+
+                // Touch events for mobile
+                this.track.addEventListener('touchstart', (e) => {
+                    this.touchStartX = e.touches[0].clientX;
+                }, { passive: true });
+
+                this.track.addEventListener('touchend', (e) => {
+                    this.touchEndX = e.changedTouches[0].clientX;
+                    this.handleSwipe();
+                }, { passive: true });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                    if (e.key === ' ') {
+                        e.preventDefault();
+                        this.toggleAutoPlay();
+                    }
+                });
+
+                // Pause on hover
+                this.track.addEventListener('mouseenter', () => {
+                    if (this.isAutoPlaying) this.pauseAutoPlay();
+                });
+
+                this.track.addEventListener('mouseleave', () => {
+                    if (this.isAutoPlaying) this.startAutoPlay();
+                });
+            }
+
+            handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = this.touchStartX - this.touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        this.nextSlide();
+                    } else {
+                        this.prevSlide();
+                    }
+                }
+            }
+
+            updateCarousel() {
+                const offset = -this.currentIndex * 100;
+                this.track.style.transform = `translateX(${offset}%)`;
+
+                // Update indicators
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+            }
+
+            nextSlide() {
+                this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+                this.updateCarousel();
+            }
+
+            prevSlide() {
+                this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+                this.updateCarousel();
+            }
+
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+            }
+
+            startAutoPlay() {
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 4000);
+            }
+
+            pauseAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+
+            toggleAutoPlay() {
+                this.isAutoPlaying = !this.isAutoPlaying;
+                
+                if (this.isAutoPlaying) {
+                    this.startAutoPlay();
+                    this.playPauseBtn.textContent = 'Pause';
+                    this.playPauseBtn.classList.remove('active');
+                } else {
+                    this.pauseAutoPlay();
+                    this.playPauseBtn.textContent = 'Play';
+                    this.playPauseBtn.classList.add('active');
+                }
+            }
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new Carousel();
+        });
+    </script>
+</body>
+</html>
