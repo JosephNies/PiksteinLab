@@ -22,7 +22,7 @@ class MyHeader extends HTMLElement {
 	`;
   }
 }
-customElements.define("header-component", MyHeader);
+customElements.define('header-component', MyHeader);
 
 class MyHamburger extends HTMLElement {
   connectedCallback() {
@@ -52,7 +52,7 @@ class MyHamburger extends HTMLElement {
 	`;
   }
 }
-customElements.define("hamburger-component", MyHamburger);
+customElements.define('hamburger-component', MyHamburger);
 
 class MyFooter extends HTMLElement {
   connectedCallback() {
@@ -101,15 +101,14 @@ class MyFooter extends HTMLElement {
 	`;
   }
 }
-customElements.define("footer-component", MyFooter);
+customElements.define('footer-component', MyFooter);
 
 class MyAbout extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
 		<h2>About</h2>
           <p>
-            Discovering the wonders of biology through the lens of
-			curiosity and innovation. Join us in exploring.
+           We are dedicated to advancing conservation and ecological stewardship through research, education, and community action. Our mission is to safeguard biodiversity, restore natural habitats, and promote sustainable practices that ensure a thriving planet for future generations.
           </p>
           <ul class="actions">
             <li><a href="about.html" class="button">Learn More</a></li>
@@ -117,4 +116,4 @@ class MyAbout extends HTMLElement {
 	`;
   }
 }
-customElements.define("about-component", MyAbout);
+customElements.define('about-component', MyAbout);
