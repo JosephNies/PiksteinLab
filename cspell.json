@@ -4,6 +4,6 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [],
-  "ignoreWords": ["Csvg", "Cpath", "Tegu"],
+  "ignoreWords": ["Csvg", "Cpath", "Tegu", "Pikstein"],
   "import": []
 }
