@@ -39,12 +39,18 @@ https://www.alieward.com/
         <article class="post">
           <header>
             <div class="title">
-              <h2><a href="single.html">Home</a></h2>
+              <h2>Home</h2>
             </div>
           </header>
-          <div class="image featured">
-            <img src="images\animals\tegu-003.webp" alt="Tegu" />
+          <div class="image overflow">
+            <!-- <div class="image featured"> -->
+            <picture class="image featured">
+              <source media="(width < 800px)" srcset="images\animals\img02-480w.png" />
+              <source media="(width >= 800px)" srcset="images\animals\img01-960w.png" />
+              <img src="images\animals\img01-960w.png" alt="Chris standing up holding his daughter Elva" />
+            </picture>
           </div>
+          <!-- </div> -->
           <p>
             Welcome to the Pikstein Lab, where our work is dedicated to advancing conservation science and fostering environmental
             stewardship through research, education, and public outreach.
