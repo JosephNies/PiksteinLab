@@ -1,12 +1,17 @@
-cd C:\Shared\Site Development\Assets\animals
+cd C:\Shared\Site Development\PikSteinLab\images\animals
 magick mogrify -quality 80 -format webp *.jpg *.png
-cd C:\Shared\Site Development\Assets\events
+cd C:\Shared\Site Development\PikSteinLab\images\events
 magick mogrify -quality 80 -format webp *.jpg *.png
-cd C:\Shared\Site Development\Assets\fieldWork
+cd C:\Shared\Site Development\PikSteinLab\images\events\priorEvents
 magick mogrify -quality 80 -format webp *.jpg *.png
-cd C:\Shared\Site Development\Assets\logos
+cd C:\Shared\Site Development\PikSteinLab\images\fieldWork
 magick mogrify -quality 80 -format webp *.jpg *.png
-cd C:\Shared\Site Development\Assets\outreachPrograms
+cd C:\Shared\Site Development\PikSteinLab\images\logos
 magick mogrify -quality 80 -format webp *.jpg *.png
-cd C:\Shared\Site Development\Assets\outreachPrograms\presenting
+cd C:\Shared\Site Development\PikSteinLab\images\outreachPrograms
 magick mogrify -quality 80 -format webp *.jpg *.png
+cd C:\Shared\Site Development\PikSteinLab\images\outreachPrograms\presenting
+magick mogrify -quality 80 -format webp *.jpg *.png
+
+magick mogrify -quality 80 -format webp *.jpg
+magick mogrify -quality 80 -format webp *.png
