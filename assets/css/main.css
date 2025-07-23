@@ -2438,19 +2438,49 @@ input[type='radio'] + label:before {
   width: 100%;
 }
 
-.image.overflow {
+.image.centered {
   /* position: absolute; */
+}
+
+.image.container {
+  /* width: 90vw; */
+  /* text-align: center; */
+  height: auto;
+  /* max-width: 50vw; */
+  width: 100%;
+  /* object-fit: contain; */
+  display: flex;
+  float: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .image.featured {
   display: block;
   margin: 3em 0 3em 0;
-  width: auto;
+  width: 100%;
+  max-width: 60vw;
   /* aspect-ratio: 16 / 9; */
   /* min-width: 100%; */
   /* position: absolute; */
-  object-fit: cover;
-  align-content: center;
+  object-fit: contain;
+  /* align-content: center; */
+  /* display: inline-block; */
+  border-radius: 5%;
+}
+
+.image.banner {
+  display: block;
+  margin: 3em 0 3em 0;
+  width: 100%;
+  max-width: 80vw;
+  /* aspect-ratio: 16 / 9; */
+  /* min-width: 100%; */
+  /* position: absolute; */
+  object-fit: contain;
+  /* align-content: center; */
+  /* display: inline-block; */
+  /* border-radius: 5%; */
 }
 
 .image.featured img {
