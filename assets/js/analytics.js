@@ -1,4 +1,4 @@
-// Header no submenus
+// GTM Header
 class GTMHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -18,3 +18,19 @@ class GTMHeader extends HTMLElement {
   }
 }
 customElements.define('gtm-header', GTMHeader);
+
+// GTM Body
+class GTMBody extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+		<noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TVPK6975"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"></iframe
+    ></noscript>
+	`;
+  }
+}
+customElements.define('gtm-body', GTMBody);
