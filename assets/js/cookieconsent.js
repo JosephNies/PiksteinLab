@@ -31,58 +31,116 @@
     const banner = document.createElement('div');
     banner.className = 'cookie-consent-banner';
     banner.innerHTML = `
-      <p>We use cookies to improve your experience. By clicking "Accept", you consent to our cookie policy.</p>
-      <div class="buttons">
-        <button id="cookie-accept">Accept</button>
-        <button id="cookie-decline">Decline</button>
+      <div class="cookie-content">
+        <p>We use cookies to improve your experience. By clicking "Accept", you consent to our cookie policy.</p>
+        <div class="cookie-buttons">
+          <button id="cookie-accept" class="button">Accept</button>
+          <button id="cookie-decline" class="button alt">Decline</button>
+        </div>
       </div>
     `;
 
     const style = document.createElement('style');
     style.textContent = `
       .cookie-consent-banner {
-        position: fixed;
+        position: sticky;
         bottom: 0;
         left: 0;
         right: 0;
         background: #ffffff;
+        border-top: 1px solid #e1e1e1;
         padding: 1rem;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        font-size: 0.9rem;
+        margin-top: 2rem;
+      }
+      
+      .cookie-content {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        z-index: 9999;
-        font-size: 0.9rem;
+        gap: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
       }
+      
       .cookie-consent-banner p {
         margin: 0;
-        padding-right: 1rem;
         flex: 1 1 auto;
+        color: #666;
+        line-height: 1.4;
       }
-      .cookie-consent-banner .buttons {
+      
+      .cookie-buttons {
         display: flex;
         gap: 0.5rem;
+        flex-shrink: 0;
       }
-      .cookie-consent-banner button {
+      
+      .cookie-consent-banner .button {
         padding: 0.5rem 1rem;
         border: none;
         cursor: pointer;
         border-radius: 4px;
         font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: all 0.2s ease;
       }
+      
+      .cookie-consent-banner .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      
       #cookie-accept {
         background: #2ecc71;
         color: #ffffff;
       }
+      
+      #cookie-accept:hover {
+        background: #27ae60;
+      }
+      
       #cookie-decline {
         background: #e74c3c;
         color: #ffffff;
       }
+      
+      #cookie-decline:hover {
+        background: #c0392b;
+      }
+      
+      @media screen and (max-width: 736px) {
+        .cookie-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .cookie-buttons {
+          width: 100%;
+          justify-content: center;
+        }
+        
+        .cookie-consent-banner {
+          padding: 1.5rem 1rem;
+        }
+      }
     `;
 
     document.head.appendChild(style);
-    document.body.appendChild(banner);
+
+    // Find the footer and append the banner to it
+    const footer = document.querySelector('#footer');
+    if (footer) {
+      footer.appendChild(banner);
+    } else {
+      // Fallback: append to body if footer not found
+      document.body.appendChild(banner);
+    }
 
     document.getElementById('cookie-accept').addEventListener('click', function () {
       setCookie(consentCookieName, 'accepted', 365);
