@@ -194,3 +194,14 @@ class MyAbout extends HTMLElement {
   }
 }
 customElements.define('about-component', MyAbout);
+
+
+// Ensure the cookie consent logic is loaded on every page.
+(function () {
+  const scriptSrc = 'assets/js/cookie-consent.js';
+  if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+    const s = document.createElement('script');
+    s.src = scriptSrc;
+    document.body.appendChild(s);
+  }
+})();
