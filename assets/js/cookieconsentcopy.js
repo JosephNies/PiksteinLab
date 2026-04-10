@@ -19,7 +19,7 @@
     const banner = document.createElement('div');
     banner.className = 'cookie-consent-banner';
     banner.innerHTML = `
-      <p>We use cookies to improve your experience. Learn more by reading our cookie policy.</p>
+      <p>We use cookies to improve your experience. Learn more by reading our <button id="open-modal-btn">cookie policy.</button></p>
       <div class="buttons">
         <button id="cookie-accept" class="button">Accept</button>
       </div>
