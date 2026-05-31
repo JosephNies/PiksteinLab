@@ -61,16 +61,19 @@
       banner.remove();
     });
 
+    /*
+    FOR WHEN THE BANNER HAS A REJECT BUTTON
     document.getElementById('cookie-decline').addEventListener('click', function () {
       setCookie(consentCookieName, 'rejected', 365);
       banner.remove();
     });
+    */
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  // Run after current execution queue clears so document.body is available
+  setTimeout(function () {
     const consent = getCookie(consentCookieName);
-    if (!consent) {
-      createBanner();
-    }
-  });
-})();
+    if (!consent) createBanner();
+  }, 0);
+
+})(); // ← IIFE closes and invokes here
