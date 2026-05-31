@@ -61,11 +61,14 @@
       banner.remove();
     });
 
+    /*
+    UPDATE WHEN I HAVE A DECLINE BUTTON
     document.getElementById('cookie-decline').addEventListener('click', function () {
       setCookie(consentCookieName, 'rejected', 365);
       banner.remove();
     });
   }
+*/
 
   document.addEventListener('DOMContentLoaded', function () {
     const consent = getCookie(consentCookieName);
@@ -73,4 +76,4 @@
       createBanner();
     }
   });
-})();
+}})();
