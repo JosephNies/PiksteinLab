@@ -167,14 +167,10 @@ class MyFooter extends HTMLElement {
               >
             </li>
         </ul>
-		<p class="copyright">
-			&copy;
-			<script>
-				document.write(new Date().getFullYear());
-			</script>
-			<a href="http://rachelpikstein.com/"  target="_blank">Rachel Pikstein</a>. All rights
-			reserved.
-		</p>        
+<p class="copyright">
+  &copy; ${new Date().getFullYear()}
+  <a href="http://rachelpikstein.com/" target="_blank">Rachel Pikstein</a>. All rights reserved.
+</p>       
 	`;
   }
 }
@@ -195,6 +191,17 @@ class MyAbout extends HTMLElement {
 }
 customElements.define('about-component', MyAbout);
 
+class MyHead extends HTMLElement {
+  connectedCallback() {
+    // Inject shared meta/links into <head>
+    document.head.insertAdjacentHTML('beforeend', `
+      <link rel="icon" href="images/logos/logo-Round-NoText-002.png" sizes="32x32" />
+      <link rel="icon" href="images/logos/logo-Round-NoText-002.png" sizes="192x192" />
+      <link rel="apple-touch-icon" href="images/logos/logo-Round-NoText-002.png" />
+    `);
+  }
+}
+customElements.define('head-component', MyHead);
 
 // Ensure the cookie consent logic is loaded on every page.
 /*
